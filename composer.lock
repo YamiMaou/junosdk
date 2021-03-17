@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "114e2b9773fa1f401ef83abd6a4a30e9",
+    "packages": [
+        {
+            "name": "yamitec/dot-env",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YamiMaou/dotenv.git",
+                "reference": "e5e8e684a9132fff75dcc87367988bd38515a784"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/YamiMaou/dotenv/zipball/e5e8e684a9132fff75dcc87367988bd38515a784",
+                "reference": "e5e8e684a9132fff75dcc87367988bd38515a784",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YamiTec\\DotENV\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maou Yami",
+                    "email": "maou@yamitec.com"
+                }
+            ],
+            "description": "a simple .env to $_ENV toolkit",
+            "support": {
+                "issues": "https://github.com/YamiMaou/dotenv/issues",
+                "source": "https://github.com/YamiMaou/dotenv/tree/main"
+            },
+            "time": "2021-03-17T21:22:22+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "yamitec/dot-env": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^7.2"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

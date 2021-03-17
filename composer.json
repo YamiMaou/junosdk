@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "yamitec/dot-env": "dev-main"
     },
     "autoload": {
         "psr-4": {

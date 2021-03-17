@@ -3,6 +3,7 @@
 namespace YamiTec\JunoSDK;
 
 use YamiTec\JunoSDK\Attributes\ClientAttributes;
+use YamiTec\JunoSDK\Providers\RequestProvider;
 
 class JunoSDK
 {
@@ -11,23 +12,11 @@ class JunoSDK
         $this->clientAttr = $clientAttr;
     }
 
-    public function Authorization(Array $data )
+    public function Authorization(Array $data = null)
     {
-        //$base64 = base64_encode($this->clientAttr->base64_credentials);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://api.juno.com.br/authorization-server/oauth/token");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $headers = [
-            'Content-Type: application/x-www-form-urlencoded;',
-            'Authorization: Basic ' . $this->clientAttr->base64_credentials . '',
-            'Host: api.fullprog.dev',
-            'grant_type=client_credentials&clientId=' . $this->clientAttr->clientId . '&clientSecret=' . $this->clientAttr->clientSecret . ''
-        ];
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $server_output = curl_exec($ch);
-        curl_close($ch);
+        $reqProvider = new RequestProvider($this->clientAttr);
+        $reqProvider->setEndpoint(ENDPOINT_SANDBOX['authorization-server']);
+        $server_output = $reqProvider->exec();
         $json = json_decode($server_output);
         $status = $json->status;
         if ($status == '401') {
