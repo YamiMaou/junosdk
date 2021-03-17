@@ -2,7 +2,7 @@
     "name": "yamitec/juno-sdk",
     "description": "Juno-sdk \u0000 um pacote de ferramentas para integra\u0000\u0000o e junto a plataforma de pagamentos JUNO",
     "type": "library",
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Maou Yami",
