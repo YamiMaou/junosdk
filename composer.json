@@ -1,0 +1,20 @@
+{
+    "name": "yamitec/juno-sdk",
+    "description": "Juno-sdk \u0000 um pacote de ferramentas para integra\u0000\u0000o e junto a plataforma de pagamentos JUNO",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Maou Yami",
+            "email": "maou@yamitec.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "YamiTec\\JunoSDK\\": "src/"
+        }
+    }
+}
