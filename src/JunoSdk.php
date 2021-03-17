@@ -1,21 +1,16 @@
 <?php
 
 namespace YamiTec\JunoSDK;
-class ClientAttr {
-    public $clientId;
-    public $clientSecret = '';
-    public $base64_credentials = '';
 
-    public function setBase64_credentials(){
+use YamiTec\JunoSDK\Attributes\ClientAttributes;
 
-    }
-}
 class JunoSDK
 {
-    public $clientAttr;
-    public function __construct(ClientAttr $clientAttr){
+    private $clientAttr;
+    public function __construct(ClientAttributes $clientAttr){
         $this->clientAttr = $clientAttr;
     }
+
     public function Authorization(Array $data )
     {
         //$base64 = base64_encode($this->clientAttr->base64_credentials);

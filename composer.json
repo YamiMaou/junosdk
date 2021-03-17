@@ -3,6 +3,7 @@
     "description": "Juno-sdk \u0000 um pacote de ferramentas para integra\u0000\u0000o e junto a plataforma de pagamentos JUNO",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Maou Yami",
