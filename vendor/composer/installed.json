@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/YamiMaou/dotenv.git",
-                "reference": "e5e8e684a9132fff75dcc87367988bd38515a784"
+                "reference": "e5b466c8e365a47e2b5b76a8220b8d405e1b6791"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/YamiMaou/dotenv/zipball/e5e8e684a9132fff75dcc87367988bd38515a784",
-                "reference": "e5e8e684a9132fff75dcc87367988bd38515a784",
+                "url": "https://api.github.com/repos/YamiMaou/dotenv/zipball/e5b466c8e365a47e2b5b76a8220b8d405e1b6791",
+                "reference": "e5b466c8e365a47e2b5b76a8220b8d405e1b6791",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2"
             },
-            "time": "2021-03-17T21:22:22+00:00",
+            "time": "2021-03-17T23:57:47+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "source",

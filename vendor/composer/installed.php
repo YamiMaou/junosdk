@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
+    'pretty_version' => '1.0.0',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => 'ff3bf812c4497ad06746959461328d72bc49fbab',
+    'reference' => NULL,
     'name' => 'yamitec/juno-sdk',
   ),
   'versions' => 
@@ -19,16 +19,16 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'e5e8e684a9132fff75dcc87367988bd38515a784',
+      'reference' => 'e5b466c8e365a47e2b5b76a8220b8d405e1b6791',
     ),
     'yamitec/juno-sdk' => 
     array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'ff3bf812c4497ad06746959461328d72bc49fbab',
+      'reference' => NULL,
     ),
   ),
 );
