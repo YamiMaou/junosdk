@@ -13,9 +13,11 @@
      */
     define('ENDPOINT_PRODUCTION', [
         "authorization-server" => "/authorization-server/oauth/token",
-        "/" => "/api-integration",
+        "charges" => "/charges",
+        "/" => "/payments",
     ]);
     define('ENDPOINT_SANDBOX', [
         "authorization-server" => "/authorization-server/oauth/token",
-        "api-integration" => "/api-integration",
+        "charges" => "/api-integration/charges",
+        "payment" => "/api-integration/payments",
     ]);
