@@ -6,6 +6,6 @@ class Billing {
     public $name;
     public $document;
     public $email;
-    public Address $address;
+    public $address;
 
 }
