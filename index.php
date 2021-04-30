@@ -40,7 +40,7 @@
 
 <?php
 require 'vendor/autoload.php';
-require 'src/Constants.php';
+//require 'src/Constants.php';
 (new \YamiTec\DotENV\DotENV(__DIR__ . '/.env'))->load();
 $address = new \YamiTec\JunoSDK\Models\Address();
 $address->street = "R. Serafim Ponte grande 50A";

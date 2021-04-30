@@ -1,5 +1,4 @@
 <?php
-
 namespace YamiTec\JunoSDK;
 
 use YamiTec\JunoSDK\Attributes\ClientAttributes;
@@ -13,6 +12,7 @@ class JunoSDK
     private $reqProvider;
     private $sandbox;
     public function __construct(ClientAttributes $clientAttr, $sandbox = false){
+        require 'Constants.php';
         $this->sandbox = $sandbox;
         $this->clientAttr = $clientAttr;
         $this->reqProvider = new RequestProvider($this->clientAttr);
