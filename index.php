@@ -66,8 +66,8 @@ $data = [
     'grant_type' => 'client_credentials',
 
 ];
-$auth_data = json_decode($juno->Authorization($data));
-//print_r(json_decode($auth_data->data));
+$auth_data = $juno->Authorization($data);
+//var_dump($auth_data);
 $charge = [
   "description" => "TESTE DE PAGAMENTO",
   "amount" => 29.99,
@@ -79,7 +79,7 @@ $creditCardDetails = [
   "creditCardHash" => "ca29edec-fe0d-4f29-b484-bfb38bc012e5",
   //"storeCreditCardData" => 1,
 ];
-$pay = $juno->makePayment(json_decode($pay->data)->_embedded->charges[0]->id, $billing, $creditCardDetails);
+$pay = $juno->makePayment($pay->data['_embedded']['charges'][0]['id'], $billing, $creditCardDetails);
 
 var_dump($pay);
 //var_dump(json_decode($pay->data)->_embedded->charges[0]->id);

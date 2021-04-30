@@ -48,6 +48,6 @@ class RequestProvider {
         $response = curl_exec($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        return (object)["status" => $status, "data" => $response];
+        return (object)["status" => $status, "data" => json_decode($response,true)];
     }
 }

@@ -27,7 +27,9 @@ class JunoSDK
             'Authorization: Basic ' . $this->clientAttr::$base64_credentials . '',
         ]);
         $server_output = $this->reqProvider->exec();
-        $json = json_decode($server_output->data);
+        $json = $server_output->data;
+        /*var_dump($json->access_token);
+        exit;*/
         $status = $server_output->status;
         if ($status == '401') {
             $errorMessage = $json->error;
@@ -50,7 +52,7 @@ class JunoSDK
                     'details' => ''
                 ]);
             } else {
-                $this->authData = json_decode($server_output->data);
+                $this->authData = $server_output->data;
                 return json_encode([
                     'success' => true,
                     'status' => $status,
@@ -67,7 +69,7 @@ class JunoSDK
             'X-API-Version: 2',
             'Content-Type: application/json;charset=UTF-8',
             'X-Resource-Token:'. getenv('JUNO_PRIVATE_TOKEN').'',
-            'Authorization: Bearer' . $this->authData->access_token. '',
+            'Authorization: Bearer' . $this->authData['access_token']. '',
         ]);
         $data = [
             "charge" => $charge,
@@ -86,7 +88,7 @@ class JunoSDK
             'X-API-Version: 2',
             'Content-Type: application/json;charset=UTF-8',
             'X-Resource-Token:'. getenv('JUNO_PRIVATE_TOKEN').'',
-            'Authorization: Bearer' . $this->authData->access_token. '',
+            'Authorization: Bearer' . $this->authData['access_token']. '',
         ]);
         $data = [
             "chargeId" => $charge,
