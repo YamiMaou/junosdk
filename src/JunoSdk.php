@@ -3,6 +3,7 @@
 namespace YamiTec\JunoSDK;
 
 use YamiTec\JunoSDK\Attributes\ClientAttributes;
+use YamiTec\JunoSDK\Models\Billing;
 use YamiTec\JunoSDK\Providers\RequestProvider;
 
 class JunoSDK
@@ -10,14 +11,16 @@ class JunoSDK
     private $clientAttr;
     private $authData;
     private $reqProvider;
-    public function __construct(ClientAttributes $clientAttr){
+    private $sandbox;
+    public function __construct(ClientAttributes $clientAttr, $sandbox = false){
+        $this->sandbox = $sandbox;
         $this->clientAttr = $clientAttr;
         $this->reqProvider = new RequestProvider($this->clientAttr);
     }
 
     public function Authorization(array $form_data)
     {
-        $this->reqProvider->setEndpoint(ENDPOINT_SANDBOX['authorization-server']);
+        $this->reqProvider->setEndpoint($this->sandbox ? ENDPOINT_SANDBOX['authorization-server'] : ENDPOINT_PRODUCTION['authorization-server']);
         $this->reqProvider->setData($form_data);
         $this->reqProvider->setHeaders([
             'Content-Type: application/x-www-form-urlencoded;',
@@ -57,9 +60,9 @@ class JunoSDK
         }
     }
 
-    public function makeCharge()
+    public function makeCharge(array $charge, Billing $billing)
     {
-        $this->reqProvider->setEndpoint(ENDPOINT_SANDBOX['charges']);
+        $this->reqProvider->setEndpoint($this->sandbox ? ENDPOINT_SANDBOX['charges'] : ENDPOINT_PRODUCTION['charges']);
         $this->reqProvider->setHeaders([
             'X-API-Version: 2',
             'Content-Type: application/json;charset=UTF-8',
@@ -67,25 +70,8 @@ class JunoSDK
             'Authorization: Bearer' . $this->authData->access_token. '',
         ]);
         $data = [
-            "charge" => [
-                "description" => "TESTE DE PAGAMENTO",
-                "amount" => 29.99,
-                "paymentTypes" => ["CREDIT_CARD"],
-            ],
-            "billing" =>[
-                "name"=> "Cliente de teste",
-                "document" => "44401919831",
-                "email" => "ephyllus2@gmail.com",
-                "address" => [
-                    "street" => "R. serafim ponte grande",
-                    "number" => 65,
-                    "complement" => "",
-                    "neighborhood" => "jd Amalia",
-                    "city" => "São Paulo",
-                    "state" => "SP",
-                    "postCode" => "05890210"
-                ]
-            ]
+            "charge" => $charge,
+            "billing" => $billing
         ];
         $this->reqProvider->setData(json_encode($data),true);
         $server_output = $this->reqProvider->exec();
@@ -93,9 +79,9 @@ class JunoSDK
     }
 
 
-    public function makePayment($charge)
+    public function makePayment($charge, Billing $billing, array $creditCardDetails)
     {
-        $this->reqProvider->setEndpoint(ENDPOINT_SANDBOX['payment']);
+        $this->reqProvider->setEndpoint($this->sandbox ? ENDPOINT_SANDBOX['payment'] : ENDPOINT_PRODUCTION['payment']);
         $this->reqProvider->setHeaders([
             'X-API-Version: 2',
             'Content-Type: application/json;charset=UTF-8',
@@ -116,16 +102,7 @@ class JunoSDK
                     "postCode" => "05890210"
                 ]
             ],
-            "creditCardDetails" => [
-                //"creditCardId" => 1,
-                "creditCardHash" => "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiaFGrkm+Oo8ZJ4H0Y4VGztBVplcW8MNR
-                ↵5vgWR7IvopYu1ARoSL7i/EwvzEx/YOMRy2o4uh80eXAem+PK52K1DhbGEkRCRz4LCvrhmtQzcVWe
-                ↵KOlb0O53c4nyXFEfKwhpm/5TbTgXrrWr66K1XUyCvs825PXb+PUEYGn4i0pACwlbn+KuR058S54e
-                ↵nzRVbIOaL1w+YoBxGB+j+LWZJhTQAy7LIJC98RYCKGi72su1JhK6zUlviDv+ZqPOLDmyTNyTj37h
-                ↵BivG9q2cXthECxdf2A5FwHyQadXyb01sBnJIIWNLpZdzQ8xbL39yjxogZUIdv2rlKS3w9wh+GPlU
-                ↵44NOmQIDAQAB",
-                //"storeCreditCardData" => 1,
-            ]
+            "creditCardDetails" =>$creditCardDetails
         ];
         $this->reqProvider->setData(json_encode($data),true);
         $server_output = $this->reqProvider->exec();

@@ -42,10 +42,25 @@
 require 'vendor/autoload.php';
 require 'src/Constants.php';
 (new \YamiTec\DotENV\DotENV(__DIR__ . '/.env'))->load();
+$address = new \YamiTec\JunoSDK\Models\Address();
+$address->street = "R. Serafim Ponte grande 50A";
+$address->number = 56;
+$address->complement = "Fundos";
+$address->neighborhood = "Jd Amália";
+$address->city = "São Paulo";
+$address->state = "SP";
+$address->postCode = "05890210";
+
+$billing = new \YamiTec\JunoSDK\Models\Billing();
+$billing->name = "TESTE 2904";
+$billing->document = "44401919831";
+$billing->email = "ephyllus2@gmail.com";
+$billing->address = $address;
+
 $client = new \YamiTec\JunoSDK\Attributes\ClientAttributes();
 //$client::setClientId('maouyami');
 $client::exec();
-$juno = new \YamiTec\JunoSDK\JunoSDK($client);
+$juno = new \YamiTec\JunoSDK\JunoSDK($client, true);
 // 'grant_type=client_credentials&clientId=' . $client::$clientId . '&clientSecret=' . $client::$clientSecret . ''
 $data = [
     'grant_type' => 'client_credentials',
@@ -53,8 +68,18 @@ $data = [
 ];
 $auth_data = json_decode($juno->Authorization($data));
 //print_r(json_decode($auth_data->data));
-$pay = $juno->makeCharge();
-$pay = $juno->makePayment(json_decode($pay->data)->_embedded->charges[0]->id);
+$charge = [
+  "description" => "TESTE DE PAGAMENTO",
+  "amount" => 29.99,
+  "paymentTypes" => ["CREDIT_CARD"],
+];
+$pay = $juno->makeCharge($charge,$billing);
+$creditCardDetails = [
+  //"creditCardId" => 1,
+  "creditCardHash" => "ca29edec-fe0d-4f29-b484-bfb38bc012e5",
+  //"storeCreditCardData" => 1,
+];
+$pay = $juno->makePayment(json_decode($pay->data)->_embedded->charges[0]->id, $billing, $creditCardDetails);
 
 var_dump($pay);
 //var_dump(json_decode($pay->data)->_embedded->charges[0]->id);
