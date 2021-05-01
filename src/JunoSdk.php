@@ -27,6 +27,7 @@ class JunoSDK
             'Authorization: Basic ' . $this->clientAttr::$base64_credentials . '',
         ]);
         $server_output = $this->reqProvider->exec();
+        return $server_output;
         $json = $server_output->data;
         /*var_dump($json->access_token);
         exit;*/
