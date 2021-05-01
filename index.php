@@ -79,7 +79,7 @@ $charge = [
 $pay = $juno->makeCharge($charge,$billing);
 $creditCardDetails = [
   //"creditCardId" => 1,
-  "creditCardHash" => "495ee3fd-64f0-47ff-be64-f7fdfc7d31e7",
+  "creditCardHash" => "37ab9140-1763-49bd-8516-481cd4527231",
   //"storeCreditCardData" => 1,
 ];
 if($pay != false)
