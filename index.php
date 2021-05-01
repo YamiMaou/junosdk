@@ -67,7 +67,7 @@ $data = [
 
 ];
 $auth_data = json_decode($juno->Authorization($data));
-//var_dump($juno->Authorization($data));
+var_dump($juno->Authorization($data));
 if($auth_data->success == false){
   return json_encode(['success' => false, 'message' => $auth_data->message]);
 }
