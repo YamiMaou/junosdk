@@ -32,10 +32,14 @@ class JunoSDK
         exit;*/
         $status = $server_output->status;
         if ($status == '401') {
-            var_dump($json);
-            $errorMessage = $json['error'];
-            $ErroMensagem = $json['message'];
-            $time = date('d/m/Y H:i', strtotime($json->timestamp));
+            $errorMessage = "Não autorizado";
+            $ErroMensagem = "Erro Interno, favol, consultar o administrador do sistema.";
+            $time = date('d/m/Y H:i', strtotime(date('now')));
+            if($json != null){
+                $errorMessage = $json['error'];
+                $ErroMensagem = $json['message'];
+                $time = date('d/m/Y H:i', strtotime($json->timestamp));
+            }
             echo json_encode([
                 'success' => false,
                 'status' => $status,
@@ -48,8 +52,8 @@ class JunoSDK
                 return json_encode([
                     'success' => false,
                     'status' => $status,
-                    'time' => $json['message'],
-                    'message' => $json->error_description,
+                    'time' => $json ? $json['message'] : "Erro interno",
+                    'message' => $json ?  $json->error_description : "Erro Interno, favol, consultar o administrador do sistema.",
                     'details' => ''
                 ]);
             } else {
@@ -65,6 +69,9 @@ class JunoSDK
 
     public function makeCharge(array $charge, Billing $billing)
     {
+        if($this->authData == null){
+            return false;
+        }
         $this->reqProvider->setEndpoint($this->sandbox ? ENDPOINT_SANDBOX['charges'] : ENDPOINT_PRODUCTION['charges']);
         $this->reqProvider->setHeaders([
             'X-API-Version: 2',
@@ -84,6 +91,9 @@ class JunoSDK
 
     public function makePayment($charge, Billing $billing, array $creditCardDetails)
     {
+        if($this->authData == null){
+            return false;
+        }
         $this->reqProvider->setEndpoint($this->sandbox ? ENDPOINT_SANDBOX['payment'] : ENDPOINT_PRODUCTION['payment']);
         $this->reqProvider->setHeaders([
             'X-API-Version: 2',

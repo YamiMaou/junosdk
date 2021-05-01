@@ -79,6 +79,7 @@ $creditCardDetails = [
   "creditCardHash" => "495ee3fd-64f0-47ff-be64-f7fdfc7d31e7",
   //"storeCreditCardData" => 1,
 ];
+if($pay != false)
 $pay = $juno->makePayment($pay->data['_embedded']['charges'][0]['id'], $billing, $creditCardDetails);
 
 var_dump($pay);
