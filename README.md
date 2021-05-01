@@ -33,9 +33,27 @@ if($auth_data->success == false){
 ```
 ## Criar Pagamento
 
+## Definindo Informações de pagamento
+```
+        $address = new \YamiTec\JunoSDK\Models\Address();
+        $address->street = "RUA ONDE MORA";
+        $address->number = 200;
+        $address->complement = "COMPLEMENTO";
+        $address->neighborhood = "BAIRRO";
+        $address->city = "CIDADE";
+        $address->state = "UF";
+        $address->postCode = "CEP";
+        
+        $billing = new \YamiTec\JunoSDK\Models\Billing();
+        $billing->name = "NOME DO TITULAR DO CARTÃO";
+        $billing->document = "CPF";
+        $billing->email = "EMAIL@EMAIL.COM";
+        $billing->address = $address; // Objeto Endereço
+```
+
 ```
 $chargeData = [
-    "description" => "Novo Lucro Plano: {$plan->name}",
+    "description" => "DESCRIÇÃO DE PAGAMENTO",
     "amount" => $plan->price,
     "paymentTypes" => ["CREDIT_CARD"],
     ];

@@ -1,6 +1,6 @@
 {
     "name": "yamitec/juno-sdk",
-    "description": "Juno-sdk \u0000 um pacote de ferramentas para integra\u0000\u0000o e junto a plataforma de pagamentos JUNO",
+    "description": "Juno-sdk é um pacote de ferramentas para integração e junto a plataforma de pagamentos JUNO",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
