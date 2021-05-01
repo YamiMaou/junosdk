@@ -40,7 +40,7 @@ class JunoSDK
                 $ErroMensagem = $json['message'];
                 $time = date('d/m/Y H:i', strtotime($json->timestamp));
             }
-            echo json_encode([
+            return json_encode([
                 'success' => false,
                 'status' => $status,
                 'time' => $time,
