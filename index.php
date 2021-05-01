@@ -66,8 +66,10 @@ $data = [
     'grant_type' => 'client_credentials',
 
 ];
-$auth_data = $juno->Authorization($data);
-//var_dump($auth_data);
+$auth_data = json_decode($juno->Authorization($data));
+if($auth_data->success == false){
+  return json_encode(['success' => false, 'message' => $auth_data->message]);
+}
 $charge = [
   "description" => "TESTE DE PAGAMENTO",
   "amount" => 29.99,
