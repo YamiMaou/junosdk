@@ -60,13 +60,14 @@ $billing->address = $address;
 $client = new \YamiTec\JunoSDK\Attributes\ClientAttributes();
 //$client::setClientId('maouyami');
 $client::exec();
-$juno = new \YamiTec\JunoSDK\JunoSDK($client, true);
+$juno = new \YamiTec\JunoSDK\JunoSDK($client);
 // 'grant_type=client_credentials&clientId=' . $client::$clientId . '&clientSecret=' . $client::$clientSecret . ''
 $data = [
     'grant_type' => 'client_credentials',
 
 ];
 $auth_data = json_decode($juno->Authorization($data));
+//var_dump($juno->Authorization($data));
 if($auth_data->success == false){
   return json_encode(['success' => false, 'message' => $auth_data->message]);
 }
