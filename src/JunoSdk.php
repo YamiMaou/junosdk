@@ -32,6 +32,7 @@ class JunoSDK
         exit;*/
         $status = $server_output->status;
         if ($status == '401') {
+            var_dump($json);
             $errorMessage = $json['error'];
             $ErroMensagem = $json['message'];
             $time = date('d/m/Y H:i', strtotime($json->timestamp));
