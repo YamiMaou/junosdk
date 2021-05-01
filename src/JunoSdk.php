@@ -33,7 +33,7 @@ class JunoSDK
         $status = $server_output->status;
         if ($status == '401') {
             $errorMessage = "Não autorizado";
-            $ErroMensagem = "Erro Interno, favol, consultar o administrador do sistema.";
+            $ErroMensagem = "Erro interno, favor, consultar o administrador do sistema.";
             $time = date('d/m/Y H:i', strtotime(date('now')));
             if($json != null){
                 $errorMessage = $json['error'];
@@ -53,7 +53,7 @@ class JunoSDK
                     'success' => false,
                     'status' => $status,
                     'time' => $json ? $json['message'] : "Erro interno",
-                    'message' => $json ?  $json->error_description : "Erro Interno, favol, consultar o administrador do sistema.",
+                    'message' => $json ?  $json->error_description : "Erro interno, favor, consultar o administrador do sistema.",
                     'details' => ''
                 ]);
             } else {
@@ -102,7 +102,7 @@ class JunoSDK
             'Authorization: Bearer' . $this->authData['access_token']. '',
         ]);
         unset($billing->name);
-        unset($billing->name);
+        unset($billing->document);
         $data = [
             "chargeId" => $charge,
             "billing" =>$billing,
