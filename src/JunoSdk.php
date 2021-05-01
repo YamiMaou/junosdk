@@ -32,8 +32,8 @@ class JunoSDK
         exit;*/
         $status = $server_output->status;
         if ($status == '401') {
-            $errorMessage = $json->error;
-            $ErroMensagem = $json->message;
+            $errorMessage = $json['error'];
+            $ErroMensagem = $json['message'];
             $time = date('d/m/Y H:i', strtotime($json->timestamp));
             echo json_encode([
                 'success' => false,
@@ -43,11 +43,11 @@ class JunoSDK
                 'details' => $ErroMensagem
             ]);
         } else {
-            if (isset($json->error)) {
+            if (isset($json['error'])) {
                 return json_encode([
                     'success' => false,
                     'status' => $status,
-                    'time' => $json->error,
+                    'time' => $json['message'],
                     'message' => $json->error_description,
                     'details' => ''
                 ]);
@@ -90,20 +90,11 @@ class JunoSDK
             'X-Resource-Token:'. getenv('JUNO_PRIVATE_TOKEN').'',
             'Authorization: Bearer' . $this->authData['access_token']. '',
         ]);
+        unset($billing->name);
+        unset($billing->document);
         $data = [
             "chargeId" => $charge,
-            "billing" =>[
-                "email" => "ephyllus2@gmail.com",
-                "address" => [
-                    "street" => "R. serafim ponte grande",
-                    "number" => 65,
-                    "complement" => "",
-                    "neighborhood" => "jd Amalia",
-                    "city" => "São Paulo",
-                    "state" => "SP",
-                    "postCode" => "05890210"
-                ]
-            ],
+            "billing" =>$billing,
             "creditCardDetails" =>$creditCardDetails
         ];
         $this->reqProvider->setData(json_encode($data),true);
