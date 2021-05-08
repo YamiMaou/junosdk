@@ -60,26 +60,29 @@ $billing->address = $address;
 $client = new \YamiTec\JunoSDK\Attributes\ClientAttributes();
 //$client::setClientId('maouyami');
 $client::exec();
-$juno = new \YamiTec\JunoSDK\JunoSDK($client);
+$juno = new \YamiTec\JunoSDK\JunoSDK($client, true);
 // 'grant_type=client_credentials&clientId=' . $client::$clientId . '&clientSecret=' . $client::$clientSecret . ''
 $data = [
     'grant_type' => 'client_credentials',
 
 ];
 $auth_data = json_decode($juno->Authorization($data));
-var_dump($juno->Authorization($data));
+/*var_dump($juno->Authorization($data));
+exit;*/
 if($auth_data->success == false){
   return json_encode(['success' => false, 'message' => $auth_data->message]);
 }
 $charge = [
   "description" => "TESTE DE PAGAMENTO",
-  "amount" => 29.99,
+  "amount" => 1.99,
   "paymentTypes" => ["CREDIT_CARD"],
 ];
 $pay = $juno->makeCharge($charge,$billing);
+//var_dump($pay);
+//exit;
 $creditCardDetails = [
   //"creditCardId" => 1,
-  "creditCardHash" => "37ab9140-1763-49bd-8516-481cd4527231",
+  "creditCardHash" => "97ad0345-3c1c-471e-a8fe-bed237001fc7",
   //"storeCreditCardData" => 1,
 ];
 if($pay != false)

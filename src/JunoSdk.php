@@ -29,7 +29,7 @@ class JunoSDK
         $server_output = $this->reqProvider->exec();
         //return $server_output;
         $json = $server_output->data;
-        /*var_dump($json->access_token);
+        /*var_dump($server_output);
         exit;*/
         $status = $server_output->status;
         if ($status == '401') {
