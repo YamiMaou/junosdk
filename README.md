@@ -7,7 +7,6 @@ para iniciar o projeto basta instalar apartir do composer  com o comando ```comp
 # Exemplo 
 
 
-
 Para efetuar pagamentos com a JunoSDK basta instanciar a classe ```\YamiTec\JunoSDK```.
 o seu arquivo .env deve ter os seguintes parametros:
 ```
@@ -68,7 +67,7 @@ print_r($charge);
 ```
 [JS]
 if(env('JUNO_ENVIRONMENT') == "SANDBOX") // verificar se é sandbox ou production
-    script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
+    <script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
 else
     <script type="text/javascript" src="https://www.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
 endif
